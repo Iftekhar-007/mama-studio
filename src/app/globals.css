@@ -7,3 +7,8 @@
   font-family: var(--font-inter);
 }
 
+html, body{
+  background-color: white;
+  color: black;
+}
+

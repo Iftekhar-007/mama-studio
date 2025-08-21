@@ -23,60 +23,57 @@ const slides = [
 export default function Banner() {
   const [current, setCurrent] = useState(0);
 
+  // Auto-slide
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 10000); // ⬅️ ekhane change korte hobe
+    }, 8000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#F2F2F2] overflow-hidden">
+    <div className="w-full bg-[#F2F2F2] py-16 relative overflow-x-hidden">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`absolute top-0 left-0 w-full h-full flex items-center justify-center transition-opacity duration-700 ${
-            index === current ? "opacity-100" : "opacity-0"
+          className={`flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto gap-8 transition-opacity duration-700 ${
+            index === current ? "opacity-100" : "opacity-0 absolute inset-0"
           }`}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-11/12 max-w-6xl mx-auto items-center">
-            {/* Text Section */}
-            <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              animate={{
-                x: index === current ? 0 : 100,
-                opacity: index === current ? 1 : 0,
-              }}
-              transition={{ duration: 0.8 }}
-              className="text-center md:text-left"
-            >
-              <h2 className="text-3xl md:text-5xl lg:text-7xl text-black font-normal mb-4">
-                {slide.title}
-              </h2>
-              <p className="text-black text-2xl">{slide.description}</p>
-            </motion.div>
+          {/* Text Section */}
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{
+              x: index === current ? 0 : 100,
+              opacity: index === current ? 1 : 0,
+            }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 text-center md:text-left px-4 sm:px-6"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-4 font-[Inter] text-black ">
+              {slide.title}
+            </h2>
+            <p className="text-black text-2xl">{slide.description}</p>
+          </motion.div>
 
-            {/* Image Section */}
-            <motion.div
-              initial={{ x: -100, opacity: 0 }}
-              animate={{
-                x: index === current ? 0 : -100,
-                opacity: index === current ? 1 : 0,
-              }}
-              transition={{ duration: 0.8 }}
-              className="flex justify-center"
-            >
-              <Image
-                src={slide.img}
-                alt={slide.title}
-                className="w-[400px] rounded-xl"
-              />
-            </motion.div>
-          </div>
+          {/* Image Section */}
+          <motion.div
+            initial={{ x: -100, opacity: 0 }}
+            animate={{
+              x: index === current ? 0 : -100,
+              opacity: index === current ? 1 : 0,
+            }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 text-center md:text-left px-4 sm:px-6"
+          >
+            <Image
+              src={slide.img}
+              alt={slide.title}
+              className="w-full max-w-full md:max-w-[400px] rounded-xl"
+            />
+          </motion.div>
         </div>
       ))}
-
-      {/* Next Button */}
     </div>
   );
 }

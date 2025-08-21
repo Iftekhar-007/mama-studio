@@ -1,10 +1,3 @@
-// import React from "react";
-
-// const Navbar = () => {
-//   return <div></div>;
-// };
-
-// export default Navbar;
 "use client";
 
 import * as React from "react";
@@ -20,13 +13,12 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
 import ChairIcon from "@mui/icons-material/Chair";
 
 const pages = ["Products", "Blog"];
 const settings = ["Dashboard", "Logout"];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ user }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -65,11 +57,11 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              fontFamily: "Inter, sans-serif",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "#000000",
@@ -108,7 +100,14 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -120,12 +119,12 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "Inter",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "#000000",
@@ -139,7 +138,7 @@ function ResponsiveAppBar() {
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: "center", // 👈 menu center e
+              justifyContent: "center",
             }}
           >
             {pages.map((page) => (
@@ -152,7 +151,7 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -176,12 +175,71 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
                     {setting}
                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
+          </Box> */}
+
+          <Box sx={{ flexGrow: 0 }}>
+            {user ? (
+              <>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt={user.name}
+                      src={user.avatar || "/static/images/avatar/2.jpg"}
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  keepMounted
+                  transformOrigin={{ vertical: "top", horizontal: "right" }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography
+                        sx={{
+                          textAlign: "center",
+                          fontFamily: "Inter, sans-serif",
+                        }}
+                      >
+                        {setting}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </>
+            ) : (
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "black", // text color
+                  borderColor: "black", // border color
+                  "&:hover": {
+                    backgroundColor: "black",
+                    color: "white", // optional hover bg
+                    borderColor: "black", // hover border color
+                  },
+                }}
+                onClick={() => console.log("Go to login")}
+              >
+                Login
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </Container>
