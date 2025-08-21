@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/Components/Navbar";
 import Providers from "./Providers";
+import NavbarWrapper from "./Components/NavbarWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,11 +16,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // const path = typeof window !== "undefined" ? window.location.pathname : "";
+  // const showNavbar = !path.startsWith("/dashboard");
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <Providers>
-          <Navbar></Navbar>
+          <NavbarWrapper></NavbarWrapper>
           {children}
         </Providers>
       </body>
