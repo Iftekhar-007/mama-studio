@@ -14,7 +14,7 @@ const slides = [
   },
   {
     id: 2,
-    title: "Discover Living Room Tables",
+    title: "Discover Living Room Chairs",
     description: "Free Standard Shipping.",
     img: chair3,
   },
