@@ -46,13 +46,19 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#ffffff" }}>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "#F2F2F2",
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <ChairIcon
             sx={{
               display: { xs: "none", md: "flex" },
               mr: 1,
+              color: "black",
             }}
           />
           <Typography
@@ -107,7 +113,9 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <ChairIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <ChairIcon
+            sx={{ display: { xs: "flex", md: "none" }, color: "black", mr: 1 }}
+          />
           <Typography
             variant="h5"
             noWrap
