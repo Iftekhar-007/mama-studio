@@ -1,7 +1,7 @@
 // lib/dbConnect.js
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@iftekharbases.ulu3uwc.mongodb.net/?retryWrites=true&w=majority&appName=IftekharBases`;
+const uri = process.env.NEXT_PUBLIC_MONGODB_URI;
 
 let client;
 let clientPromise;
