@@ -18,10 +18,11 @@ import { useRouter } from "next/navigation";
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
+// import ThemeToggle from "./ThemeToggle";
 
 const pages = [
   { label: "Products", path: "/products" },
-  { label: "Blog", path: "/" },
+  { label: "Blog", path: "/blog" },
 ];
 
 function ResponsiveAppBar() {
@@ -144,6 +145,7 @@ function ResponsiveAppBar() {
 
           {/* Right Side (User / Login) */}
           <Box sx={{ flexGrow: 0 }}>
+            {/* <ThemeToggle></ThemeToggle> */}
             {session ? (
               <>
                 <Tooltip title={session.user?.name || "Profile"}>
@@ -200,7 +202,7 @@ function ResponsiveAppBar() {
                   signIn("google");
                 }}
               >
-                Login
+                Login with Google
               </Button>
             )}
           </Box>

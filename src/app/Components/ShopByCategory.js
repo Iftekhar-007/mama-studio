@@ -13,7 +13,7 @@ const categories = [
 
 export default function ShopByCategory() {
   return (
-    <div className="w-9/12 mx-auto py-8">
+    <div className="w-9/12 mx-auto p-8">
       <h2 className="text-2xl font-normal md:text-3xl lg:text-4xl font-[Inter] pb-6">
         Shop By Categories
       </h2>
