@@ -1,7 +1,7 @@
 // lib/dbConnect.js
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const uri = process.env.NEXT_PUBLIC_MONGODB_URI;
+const uri = process.env.MONGODB_URI;
 
 let client;
 let clientPromise;
@@ -20,5 +20,5 @@ if (!clientPromise) {
 
 export default async function dbConnect(collectionName) {
   const connectedClient = await clientPromise;
-  return connectedClient.db(process.env.DB_USER).collection(collectionName);
+  return connectedClient.db("mamastudiop").collection(collectionName);
 }
