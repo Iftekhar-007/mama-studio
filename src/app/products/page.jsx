@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 const ProductsAll = async () => {
-  const res = await fetch("http://localhost:3001/api/products", {
+  const res = await fetch("http://localhost:3000/api/products", {
     cache: "no-store",
   });
   const products = await res.json();

@@ -6,7 +6,7 @@ const GetData = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/products?limit=4")
+    fetch("http://localhost:3000/api/products?limit=4")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.error(err));
