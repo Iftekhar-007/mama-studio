@@ -20,5 +20,5 @@ if (!clientPromise) {
 
 export default async function dbConnect(collectionName) {
   const connectedClient = await clientPromise;
-  return connectedClient.db("mamastudiop").collection(collectionName);
+  return connectedClient.db(process.env.DB_USER).collection(collectionName);
 }
